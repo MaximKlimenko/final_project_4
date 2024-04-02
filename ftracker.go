@@ -19,7 +19,7 @@ const (
 // Параметры:
 //
 // action int — количество совершенных действий (число шагов при ходьбе и беге, либо гребков при плавании).
-func distance(action int) float64 {
+func distance(action int) float64 { //km
 	return float64(action) * lenStep / mInKm
 }
 
@@ -29,7 +29,7 @@ func distance(action int) float64 {
 //
 // action int — количество совершенных действий(число шагов при ходьбе и беге, либо гребков при плавании).
 // duration float64 — длительность тренировки в часах.
-func meanSpeed(action int, duration float64) float64 {
+func meanSpeed(action int, duration float64) float64 { // km/h
 	if duration == 0 {
 		return 0
 	}
@@ -101,7 +101,7 @@ const (
 // height float64 — рост пользователя.
 func WalkingSpentCalories(action int, duration, weight, height float64) float64 {
 	// ваш код здесь
-	return ((walkingCaloriesWeightMultiplier*weight + (math.Pow(meanSpeed(action, duration), 2)/height)*walkingSpeedHeightMultiplier*weight) * duration * minInH)
+	return ((walkingCaloriesWeightMultiplier*weight + (math.Pow(meanSpeed(action, duration)*kmhInMsec, 2)/(height/cmInM))*walkingSpeedHeightMultiplier*weight) * duration * minInH)
 }
 
 // Константы для расчета калорий, расходуемых при плавании.
